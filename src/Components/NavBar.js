@@ -34,9 +34,7 @@ const LoginButton = styled.button`
     height: 50px;
     background-color: transparent;
     border: none;
-    cursor: pointer;
     color: #fff;
-    font-family: Roboto, sans-serif;
     text-transform: uppercase;
     transition: 0.3s;
 
@@ -44,10 +42,7 @@ const LoginButton = styled.button`
         color: rgba(0, 0, 0, 0.5);
     }
 `
-const LoginButtonImg = styled.img`
-    width: 30px;
-    height: 30px;
-`
+
 export const NavBar = () => (
     <NavBarStyled>
         <Logo>
@@ -55,8 +50,8 @@ export const NavBar = () => (
             <H1>MrDonald's</H1>
         </Logo>
         <LoginButton>
-            <LoginButtonImg src={loginImg} />
-            Войти
+            <img src={loginImg} alt="Войти" />
+            <p>Войти</p>
         </LoginButton>
     </NavBarStyled>
 )
