@@ -12,7 +12,7 @@ export const OrderStyled = styled.section`
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    min-width: 380px;
+    width: 380px;
     height: calc(100% - 80px);
     box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.25);
     padding: 25px;
@@ -51,6 +51,10 @@ export const Order = ({ orders }) => {
         (result, order) => totalPriceItems(order) + result,
         0
     )
+    const totalCounter = orders.reduce(
+        (result, order) => order.count + result,
+        0
+    )
 
     return (
         <OrderStyled>
@@ -68,7 +72,7 @@ export const Order = ({ orders }) => {
             </OrderContent>
             <Total>
                 <span>Итого</span>
-                <span>5</span>
+                <span>{totalCounter}</span>
                 <TotalPrice>{formatCurrency(total)}</TotalPrice>
             </Total>
             <ButtonCheckout>Оформить</ButtonCheckout>
