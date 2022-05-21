@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-export const Button = styled.button`
+export const ButtonCheckout = styled.button`
+    display: block;
     width: 250px;
     height: 65px;
     background: #299b01;
@@ -9,6 +10,7 @@ export const Button = styled.button`
     line-height: 1;
     color: #ffffff;
     transition: 0.3s;
+    margin: 0 auto;
 
     &:hover {
         background: #217a02;
