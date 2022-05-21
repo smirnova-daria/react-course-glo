@@ -54,4 +54,9 @@ export const GlobalStyle = createGlobalStyle`
   input, button {
     font-family: inherit;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button  {    
+    -webkit-appearance: none;
+  }
 `

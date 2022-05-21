@@ -3,7 +3,7 @@ import './App.css'
 
 import { NavBar } from './Components/NavBar/NavBar'
 import { Menu } from './Components/Menu/Menu'
-import { GlobalStyle } from './Components/Style/GlobalStyle'
+import { GlobalStyle } from './Components/Styled/GlobalStyle'
 import { ModalItem } from './Components/Modal/ModalItem'
 import { Order } from './Components/Order/Order'
 import { useOpenItem } from './Components/Hooks/useOpenItem'

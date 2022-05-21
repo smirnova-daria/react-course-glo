@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import trashImage from '../../image/trash.svg'
+import { totalPriceItems } from '../helpers/secondaryFunction'
+import { formatCurrency } from '../helpers/secondaryFunction'
 
 const TrashButton = styled.button`
     width: 24px;
@@ -30,13 +32,8 @@ const ItemPrice = styled.span`
 export const OrderListItem = ({ order }) => (
     <OrderItemStyled>
         <ItemName>{order.name}</ItemName>
-        <span>2</span>
-        <ItemPrice>
-            {order.price.toLocaleString('ru-RU', {
-                style: 'currency',
-                currency: 'RUB',
-            })}
-        </ItemPrice>
+        <span>{order.count}</span>
+        <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
         <TrashButton />
     </OrderItemStyled>
 )
