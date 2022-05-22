@@ -15,4 +15,9 @@ export const ButtonCheckout = styled.button`
     &:hover {
         background: #217a02;
     }
+
+    &:disabled {
+        color: #bbb;
+        background: #ccc;
+    }
 `

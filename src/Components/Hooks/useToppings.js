@@ -7,7 +7,9 @@ const getToppings = (toppings) =>
     }))
 
 export function useToppings(openItem) {
-    const readyToppings = openItem.toppings
+    const readyToppings = openItem.topping
+        ? openItem.topping
+        : openItem.toppings
         ? getToppings(openItem.toppings)
         : []
     const [toppings, setToppings] = useState(readyToppings)

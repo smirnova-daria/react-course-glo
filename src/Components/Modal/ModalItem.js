@@ -7,6 +7,8 @@ import { totalPriceItems } from '../helpers/secondaryFunction'
 import { formatCurrency } from '../helpers/secondaryFunction'
 import { Toppings } from '../Modal/Toppings'
 import { useToppings } from '../Hooks/useToppings'
+import { useChoices } from '../Hooks/useChoices'
+import { Choices } from './Choices'
 
 const Overlay = styled.div`
     position: fixed;
@@ -64,8 +66,9 @@ const TotalPriceItem = styled.div`
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
     const counter = useCount()
-
     const toppings = useToppings(openItem)
+    const choices = useChoices(openItem)
+    const isEdit = openItem.index > -1
 
     const closeModal = (e) => {
         if (e.target.id === 'overlay') {
@@ -76,12 +79,19 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
     const order = {
         ...openItem,
         count: counter.count,
-        toppings: toppings.toppings,
+        topping: toppings.toppings,
+        choice: choices.choice,
     }
 
     const addToOrder = () => {
         setOrders([...orders, order])
         setOpenItem(null)
+    }
+
+    const editOrder = () => {
+        const newOrders = [...orders]
+        newOrders[openItem.index] = order
+        setOrders(newOrders)
     }
 
     return (
@@ -95,11 +105,17 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
                     </HeaderContent>
                     <CountItem {...counter} />
                     {openItem.toppings && <Toppings {...toppings} />}
+                    {openItem.choices && (
+                        <Choices {...choices} openItem={openItem} />
+                    )}
                     <TotalPriceItem>
                         <span>Цена:</span>
                         <span>{formatCurrency(totalPriceItems(order))}</span>
                     </TotalPriceItem>
-                    <ButtonCheckout onClick={addToOrder}>
+                    <ButtonCheckout
+                        onClick={isEdit ? editOrder : addToOrder}
+                        disabled={order.choices && !order.choice}
+                    >
                         Добавить
                     </ButtonCheckout>
                 </Content>
