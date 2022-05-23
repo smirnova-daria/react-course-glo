@@ -1,8 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
 import styled from 'styled-components'
 import trashImage from '../../image/trash.svg'
 import { totalPriceItems } from '../helpers/secondaryFunction'
 import { formatCurrency } from '../helpers/secondaryFunction'
+import { Context } from '../helpers/context'
 
 const TrashButton = styled.button`
     width: 24px;
@@ -37,7 +38,10 @@ const Toppings = styled.div`
     width: 100%;
 `
 
-export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => {
+export const OrderListItem = ({ order, index, deleteItem }) => {
+    const {
+        openItem: { setOpenItem },
+    } = useContext(Context)
     const topping = order.topping
         .filter((item) => item.checked)
         .map((item) => item.name)
